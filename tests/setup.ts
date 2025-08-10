@@ -5,6 +5,7 @@ import { vi } from 'vitest'
 const mockAudioContext = {
   createOscillator: vi.fn(() => ({
     frequency: { value: 440, setValueAtTime: vi.fn() },
+    detune: { value: 0, setValueAtTime: vi.fn() },
     type: 'sine',
     connect: vi.fn(),
     disconnect: vi.fn(),
@@ -31,6 +32,19 @@ const mockAudioContext = {
     frequency: { value: 1000, setValueAtTime: vi.fn() },
     Q: { value: 1, setValueAtTime: vi.fn() },
     type: 'lowpass',
+    connect: vi.fn(),
+    disconnect: vi.fn(),
+  })),
+  createAnalyser: vi.fn(() => ({
+    fftSize: 256,
+    frequencyBinCount: 128,
+    smoothingTimeConstant: 0.8,
+    getByteFrequencyData: vi.fn((array) => {
+      // Fill with some mock frequency data
+      for (let i = 0; i < array.length; i++) {
+        array[i] = Math.random() * 255
+      }
+    }),
     connect: vi.fn(),
     disconnect: vi.fn(),
   })),
