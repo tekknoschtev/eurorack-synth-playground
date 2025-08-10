@@ -1,0 +1,46 @@
+{
+  "name": "eurorack-synth-playground",
+  "version": "0.1.0",
+  "description": "An interactive, browser-based modular synthesizer sandbox",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .js,.ts --report-unused-disable-directives --max-warnings 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vitest/coverage-v8": "^1.2.1",
+    "eslint": "^8.56.0",
+    "jsdom": "^24.0.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vitest": "^1.2.1"
+  },
+  "dependencies": {},
+  "keywords": [
+    "synthesizer",
+    "modular",
+    "eurorack",
+    "web-audio",
+    "music",
+    "interactive"
+  ],
+  "author": "",
+  "license": "MIT",
+  "homepage": "https://github.com/YOUR_USERNAME/eurorack-synth-playground",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/eurorack-synth-playground.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
