@@ -1,0 +1,226 @@
+/* CSS Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color Palette - Muted/Harmonious tones */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+  --bg-rack: #333333;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --accent-blue: #4a90e2;
+  --accent-green: #7ed321;
+  --accent-orange: #f5a623;
+  --accent-red: #d0021b;
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Touch targets */
+  --touch-target-min: 44px;
+  
+  /* Shadows and Effects */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 8px rgba(74, 144, 226, 0.3);
+  --border-radius: 8px;
+}
+
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Prevent bounce scrolling on mobile */
+  overscroll-behavior: none;
+  
+  /* Ensure full height */
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Loading State */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-text {
+  font-size: var(--font-size-large);
+  color: var(--text-secondary);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Main App Layout */
+.synth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+}
+
+.synth-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.synth-header h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* Rack Layout */
+.rack-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rack {
+  background: var(--bg-rack);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-soft);
+  padding: var(--spacing-lg);
+  width: 100%;
+  max-width: 1200px;
+  min-height: 600px;
+}
+
+.rack-row {
+  height: 300px;
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-md);
+  position: relative;
+  
+  /* Pixel-shader soft edges */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.rack-row:last-child {
+  margin-bottom: 0;
+}
+
+.rack-row--top {
+  /* Top rack styling */
+}
+
+.rack-row--bottom {
+  /* Bottom rack styling */
+}
+
+/* Error State */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.error-container h2 {
+  margin-bottom: var(--spacing-md);
+  color: var(--accent-red);
+}
+
+.error-container button {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  min-height: var(--touch-target-min);
+  transition: all 0.2s ease;
+}
+
+.error-container button:hover {
+  background: #3a7bc8;
+  transform: translateY(-1px);
+}
+
+.error-container button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .synth-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .rack {
+    padding: var(--spacing-md);
+    min-height: 400px;
+  }
+  
+  .rack-row {
+    height: 200px;
+  }
+  
+  /* Ensure touch targets are large enough */
+  button, 
+  [role="button"] {
+    min-height: var(--touch-target-min);
+    min-width: var(--touch-target-min);
+  }
+}
+
+@media (max-width: 480px) {
+  .rack {
+    padding: var(--spacing-sm);
+  }
+  
+  .rack-row {
+    height: 150px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    font-weight: 300;
+  }
+}
